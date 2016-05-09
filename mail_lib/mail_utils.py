@@ -10,10 +10,15 @@ from email.Utils import formatdate
 from email.Utils import formataddr
 
 
-def send_mail(to_addr_list, subject, message, from_addr, smtp_host, smtp_port=25):
+def send_mail(to_addr_list, subject, message, from_addr, smtp_host, smtp_port=25, cc_addr_list=[], bcc_addr_list=[]):
     msg = MIMEText(message, _charset='utf-8')
     msg.set_unixfrom('author')
-    msg['To'] = formataddr(('Recipient', ','.join(map(str, to_addr_list))))
+    if len(to_addr_list) != 0:
+        msg['To'] = ','.join(to_addr_list)
+    if len(cc_addr_list) != 0:
+        msg['Cc'] = ','.join(cc_addr_list)
+    if len(bcc_addr_list) != 0:
+        msg['Bcc'] = ','.join(bcc_addr_list)
     msg['From'] = formataddr(('Author', from_addr))
     msg['Subject'] = subject
     msg['Date'] = formatdate(localtime=True)
@@ -23,11 +28,17 @@ def send_mail(to_addr_list, subject, message, from_addr, smtp_host, smtp_port=25
     s.quit()
 
 
-def send_attach_file_mail(to_addr_list, subject, message, file_path, from_addr, smtp_host, smtp_port=25):
+def send_attach_file_mail(to_addr_list, subject, message, file_path, from_addr, smtp_host, smtp_port=25,
+                          cc_addr_list=[], bcc_addr_list=[]):
     msg = MIMEMultipart()
     msg['Subject'] = subject
     msg['From'] = formataddr(('Author', from_addr))
-    msg['To'] = formataddr(('Recipient', ','.join(map(str, to_addr_list))))
+    if len(to_addr_list) != 0:
+        msg['To'] = ','.join(to_addr_list)
+    if len(cc_addr_list) != 0:
+        msg['Cc'] = ','.join(cc_addr_list)
+    if len(bcc_addr_list) != 0:
+        msg['Bcc'] = ','.join(bcc_addr_list)
     msg['Date'] = formatdate(localtime=True)
     message = MIMEText(message, _charset='utf-8')
     msg.attach(message)

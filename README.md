@@ -20,7 +20,7 @@ mail_lib
 ### ユーティリティ
 #### メール関連
 ***
-send_mail(to_addr_list, subject, message, from_addr, smtp_host, smtp_port=25):メールを送信します
+send_mail(to_addr_list, subject, message, from_addr, smtp_host, smtp_port=25, cc_addr_list=[], bcc_addr_list=[]):メールを送信します
 
 | 名前 | 必須 | 説明 | デフォルト値 | 
 |:-----------|:------------:|:-----------|:-----------| 
@@ -30,9 +30,11 @@ send_mail(to_addr_list, subject, message, from_addr, smtp_host, smtp_port=25):メ
 | from_addr | ◯ | 送信元メールアドレス | - |
 | smtp_host | ◯ | smtpサーバドメイン | - |
 | smtp_port | × | smtpサーバポート | 25 |
+| cc_addr_list | × | CCメールアドレス | [] |
+| bcc_addr_list | × | BCCメールアドレス | [] |
 戻り値：なし
 ***
-send_attach_file_mail(to_addr_list, subject, message, file_path, from_addr, smtp_host, smtp_port=25):ファイルを添付したメールを送信します
+send_attach_file_mail(to_addr_list, subject, message, file_path, from_addr, smtp_host, smtp_port=25, cc_addr_list=[], bcc_addr_list=[]):ファイルを添付したメールを送信します
 
 | 名前 | 必須 | 説明 | デフォルト値 | 
 |:-----------|:------------:|:-----------|:-----------| 
@@ -43,6 +45,8 @@ send_attach_file_mail(to_addr_list, subject, message, file_path, from_addr, smtp
 | from_addr | ◯ | 送信元メールアドレス | - |
 | smtp_host | ◯ | smtpサーバドメイン | - |
 | smtp_port | × | smtpサーバポート | 25 |
+| cc_addr_list | × | CCメールアドレス | [] |
+| bcc_addr_list | × | BCCメールアドレス | [] |
 戻り値：なし
 ***
 
