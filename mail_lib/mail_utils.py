@@ -23,8 +23,7 @@ def send_mail(to_addr_list, subject, message, from_addr, smtp_host, smtp_port=25
     msg['Subject'] = subject
     msg['Date'] = formatdate(localtime=True)
     s = smtplib.SMTP(smtp_host, smtp_port)
-    s.sendmail(from_addr,
-               to_addr_list, msg.as_string())
+    s.sendmail(from_addr, to_addr_list + cc_addr_list + bcc_addr_list, msg.as_string())
     s.quit()
 
 
@@ -50,6 +49,5 @@ def send_attach_file_mail(to_addr_list, subject, message, file_path, from_addr, 
     msg.attach(attachment)
     attachment.add_header('Content-Disposition', 'attachment', filename=os.path.basename(file_path))
     s = smtplib.SMTP(smtp_host, smtp_port)
-    s.sendmail(from_addr,
-               to_addr_list, msg.as_string())
+    s.sendmail(from_addr, to_addr_list + cc_addr_list + bcc_addr_list, msg.as_string())
     s.quit()

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='mail_lib',
-    version='1.0.1',
+    version='1.0.2',
     description='Mail Library',
     long_description='https://pypi.python.org/pypi/mail_lib',
     url='https://github.com/Akira-Taniguchi/mail_lib',
